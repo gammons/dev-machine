@@ -1,0 +1,85 @@
+---
+- name: Setup base packages
+  become: true
+  apt: pkg={{ item }}
+  with_items:
+    - vim
+    - git
+    - ntp
+    - tmux
+    - feh
+    - numlockx
+    - rofi
+    - fonts-font-awesome
+    - fonts-inconsolata
+    - i3-wm
+    - htop
+    - silversearcher-ag
+    - conky
+    - tig
+    - zsh
+    - ntp
+    - dunst
+    - redshift-gtk
+    - curl
+    - rxvt-unicode-256color
+    - ansible
+
+- name: Setup libraries
+  become: true
+  apt: pkg={{ item }}
+  with_items:
+    - libmpdclient2
+
+- name: Install vim-plug
+  shell: curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+- name: Change shell to zsh
+  become: true
+  user:
+    name: vagrant
+    shell: /bin/zsh
+
+- name: clone thoughtbot's dotfiles
+  git:
+    repo: https://github.com/thoughtbot/dotfiles.git
+    dest: ~/dotfiles
+
+- name: clone my dotfiles
+  git:
+    repo: 'https://github.com/gammons/dotfiles-local.git'
+    dest: ~/dotfiles-local
+    version: i3-stuff
+
+- name: add RCM key
+  become: true
+  apt_key:
+    url: https://apt.thoughtbot.com/thoughtbot.gpg.key
+    state: present
+
+- name: add RCM repo
+  become: true
+  apt_repository:
+    repo: deb http://apt.thoughtbot.com/debian/ stable main
+    state: present
+
+- name: add RCM repo
+  become: true
+  apt:
+    name: rcm
+    state: present
+
+- name: run rcup for first time
+  shell: env RCRC=$HOME/dotfiles/rcrc rcup
+  async: 30
+  poll: 0
+
+- name: install base16-shell
+  git:
+    repo: https://github.com/chriskempson/base16-shell.git
+    dest: ~/.config/base16-shell
+
+- name: install fzf
+  git:
+    repo:  https://github.com/junegunn/fzf.git
+    dest: ~/.fzf

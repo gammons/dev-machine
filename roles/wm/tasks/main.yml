@@ -1,0 +1,38 @@
+---
+- name: create i3 config dir
+  file:
+    path: ~/.config/i3
+    state: directory
+
+- name: create polybar config dir
+  file:
+    path: ~/.config/polybar
+    state: directory
+
+- name: symlink i3 config
+  file:
+    src: ~/dotfiles-local/i3-config
+    dest: ~/.config/i3/config
+    state: link
+
+- name: symlink polybar config
+  file:
+    src: ~/dotfiles-local/polybar-config
+    dest: ~/.config/polybar/config
+    state: link
+
+- name: symlink polybar launch file
+  file:
+    src: ~/dotfiles-local/polybar-launch.sh
+    dest: ~/.config/polybar/launch.sh
+    state: link
+
+- name: get polybar deb file
+  get_url:
+    url: http://archive.getdeb.net/ubuntu/pool/apps/p/polybar/polybar_3.0.5-1~getdeb1_amd64.deb
+    dest: /tmp/polybar.deb
+
+- name: install polybar
+  become: true
+  apt:
+    deb: /tmp/polybar.deb

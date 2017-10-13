@@ -1,0 +1,10 @@
+- name: Setup desktop env
+  hosts: all
+  roles:
+    - secrets
+    - base
+    - wm
+    - dev
+    #- progs
+
+
