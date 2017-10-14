@@ -27,6 +27,12 @@
     dest: ~/.config/polybar/launch.sh
     state: link
 
+- name: symlink cpu load file
+  file:
+    src: ~/dotfiles-local/cpuload.sh
+    dest: ~/.config/polybar/cpuload.sh
+    state: link
+
 - name: get polybar deb file
   get_url:
     url: http://archive.getdeb.net/ubuntu/pool/apps/p/polybar/polybar_3.0.5-1~getdeb1_amd64.deb
@@ -36,3 +42,9 @@
   become: true
   apt:
     deb: /tmp/polybar.deb
+
+- name: remove lightdm.conf file to not autologin with unity
+  become: true
+  file:
+    name: /etc/lightdm/lightdm.conf
+    state: absent
