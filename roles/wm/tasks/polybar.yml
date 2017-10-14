@@ -1,0 +1,11 @@
+- name: get polybar deb file
+  get_url:
+    url: http://archive.getdeb.net/ubuntu/pool/apps/p/polybar/polybar_3.0.5-1~getdeb1_amd64.deb
+    dest: /tmp/polybar.deb
+
+- name: install polybar
+  become: true
+  apt:
+    deb: /tmp/polybar.deb
+
+

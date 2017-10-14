@@ -4,7 +4,7 @@
     - secrets
     - base
     - wm
+    - wm-config
     - dev
-    #- progs
 
 

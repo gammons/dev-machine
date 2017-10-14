@@ -1,0 +1,32 @@
+---
+- name: Get gaps repo
+  git:
+    repo: https://www.github.com/Airblader/i3
+    dest: /tmp/i3
+
+- name: build i3 conf
+  shell: autoreconf --force --install
+  args:
+    chdir: /tmp/i3
+
+- name: create i3 gaps build dir
+  file:
+    path: /tmp/i3/build
+    state: directory
+
+- name: configure i3
+  shell: ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+  args:
+    chdir: /tmp/i3/build
+
+- name: make i3
+  shell: make
+  args:
+    chdir: /tmp/i3/build
+
+- name: install i3
+  become: true
+  shell: make install
+  args:
+    chdir: /tmp/i3/build
+
