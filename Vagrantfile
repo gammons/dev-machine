@@ -57,8 +57,12 @@ Vagrant.configure("2") do |config|
   #
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 8192
-    vb.cpus = 4
+    vb.cpus = 2
     vb.gui = true
+
+    vb.customize ["storagectl", :id, "--name", "IDEController", "--add", "ide"]
+    vb.customize ["storageattach", :id, "--storagectl", "IDEController", "--port", "0", "--device", "0", "--type", "dvddrive", "--medium", "emptydrive"]
+    vb.customize ["modifyvm", :id, "--boot1", "disk", "--boot2", "dvd"]
   end
 
   # View the documentation for the provider you are using for more
