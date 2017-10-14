@@ -24,6 +24,7 @@
     - curl
     - rxvt-unicode-256color
     - ansible
+    - kde-spectacle
 
 - name: Setup libraries
   become: true
