@@ -33,3 +33,23 @@
 - name: install latest ruby
   become: true
   shell: ruby-install ruby
+
+- name: install tmuxinator
+  shell: gem install tmuxinator
+
+- name: install yarn key
+  become: true
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+
+- name: add yarn repo
+  become: true
+  apt_repository:
+    repo: deb https://dl.yarnpkg.com/debian/ stable main
+    state: present
+
+- name: install yarn
+  become: true
+  apt:
+    name: yarn
+    state: present
