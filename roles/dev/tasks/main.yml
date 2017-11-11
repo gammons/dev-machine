@@ -1,4 +1,12 @@
 ---
+- name: Setup base packages
+  become: true
+  apt: pkg={{ item }}
+  with_items:
+    - postgresql
+    - libpq-dev
+    - libsqlite3-dev
+
 - name: Setup Golang
   become: true
   apt:
@@ -30,9 +38,9 @@
   become: true
   shell: cd /tmp/ruby-install-0.6.1 && make install
 
-- name: install latest ruby
-  become: true
-  shell: ruby-install ruby
+# - name: install latest ruby
+#   become: true
+#   shell: ruby-install ruby
 
 - name: install tmuxinator
   shell: gem install tmuxinator
@@ -41,6 +49,16 @@
   become: true
   apt_key:
     url: https://dl.yarnpkg.com/debian/pubkey.gpg
+
+- name: add latest node repo
+  become: true
+  shell: curl -sL https://deb.nodesource.com/setup_6.x
+
+- name: install nodejs
+  become: true
+  apt:
+    name: nodejs
+    state: present
 
 - name: add yarn repo
   become: true
