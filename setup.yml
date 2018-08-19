@@ -1,7 +1,7 @@
 - name: Setup desktop env
   hosts: all
   roles:
-    - secrets
+    #- secrets
     - base
     - wm
     - wm-config

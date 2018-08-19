@@ -23,6 +23,7 @@
     - rxvt-unicode-256color
     - ansible
     - kde-spectacle
+    - python-pip
 
 - name: Setup libraries
   become: true
@@ -82,3 +83,25 @@
   git:
     repo:  https://github.com/junegunn/fzf.git
     dest: ~/.fzf
+
+- name: install tzupdate
+  shell: pip install -U tzupdate
+  become: yes
+
+- name: move tzupdate to /usr/local/bin
+  become: yes
+  copy:
+    src: "~/.local/bin/tzupdate"
+    dest: /usr/local/bin
+
+- name: set cron shell to /bin/bash
+  cron:
+    name: SHELL
+    env: yes
+    value: /bin/bash
+
+- name: put tzupdate into crontab
+  cron:
+    name: "run tzupdate"
+    minute: "*/30"
+    job: "/usr/local/bin/tzupdate"
