@@ -1,4 +1,24 @@
 ---
+- name: Setup packages
+  become: true
+  apt: pkg={{ item }}
+  with_items:
+    - feh
+    - numlockx
+    - rofi
+    - fonts-font-awesome
+    - fonts-inconsolata
+    - dunst
+    - redshift-gtk
+    - rxvt-unicode-256color
+    - kde-spectacle
+
+- name: Setup libraries
+  become: true
+  apt: pkg={{ item }}
+  with_items:
+    - libmpdclient2
+
 - name: create i3 config dir
   file:
     path: ~/.config/i3

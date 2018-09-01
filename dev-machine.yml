@@ -1,10 +1,10 @@
 - name: Setup desktop env
   hosts: all
   roles:
-    - secrets
     - base
+    - ruby
+    - dev
     - wm
     - wm-config
-    - dev
 
 

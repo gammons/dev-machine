@@ -1,0 +1,7 @@
+- name: Set up the cron container
+  hosts: all
+  remote_user: grant
+  roles:
+    - base
+    - ruby
+    - cron-container

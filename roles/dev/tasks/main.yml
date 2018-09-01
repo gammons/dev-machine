@@ -13,35 +13,6 @@
     name: golang-go
     state: present
 
-
-- name: download chruby
-  get_url:
-    url: https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
-    dest: /tmp/chruby.tgz
-
-- name: untar chruby
-  shell: cd /tmp/ && tar -zxvf /tmp/chruby.tgz
-
-- name: make chruby
-  become: true
-  shell: cd /tmp/chruby-0.3.9 && make install
-
-- name: download ruby-install
-  get_url:
-    url: https://github.com/postmodern/ruby-install/archive/v0.6.1.tar.gz
-    dest: /tmp/ruby-install.tgz
-
-- name: untar ruby-install
-  shell: cd /tmp && tar -zxvf /tmp/ruby-install.tgz
-
-- name: make ruby-install
-  become: true
-  shell: cd /tmp/ruby-install-0.6.1 && make install
-
-# - name: install latest ruby
-#   become: true
-#   shell: ruby-install ruby
-
 - name: install tmuxinator
   shell: gem install tmuxinator
 

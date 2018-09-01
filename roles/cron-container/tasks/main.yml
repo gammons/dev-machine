@@ -1,0 +1,33 @@
+---
+- name: install route 53 updater
+  git:
+    repo: https://github.com/gammons/r53-updater.git
+    dest: ~/r53-updater
+
+- name: bundle install
+  become: true
+  shell: bundle install
+  args:
+    chdir: /home/grant/r53-updater
+
+- name: Ensures ~/.aws dir exists
+  file: path=~/.aws state=directory
+
+- name: copy aws creds to correct location
+  copy:
+    src: r53-creds
+    dest: ~/.aws/credentials
+
+- name: Set up cron to use bash
+  cron:
+    name: SHELL
+    env: yes
+    value: /bin/bash
+
+- name: set up update home ip cron task
+  cron:
+    name: "update home ip"
+    minute: "0"
+    hour: "*"
+    job: "cd r53-updater && ruby updater.rb"
+

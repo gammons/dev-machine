@@ -1,0 +1,5 @@
+- name: Set up ssh landing
+  hosts: all
+  remote_user: grant
+  roles:
+    - base
