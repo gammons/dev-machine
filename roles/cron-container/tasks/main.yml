@@ -29,5 +29,5 @@
     name: "update home ip"
     minute: "0"
     hour: "*"
-    job: "cd r53-updater && ruby updater.rb"
+    job: "/usr/local/bin/ruby ~/r53-updater/updater.rb > /tmp/r53-updater.txt 2>&1"
 
