@@ -1,0 +1,10 @@
+---
+- name: put static ip address into netplan
+  become: true
+  template:
+    src: 01-netcfg.yml.j2
+    dest: /etc/netplan/50-cloud-init.yaml
+
+- name: apply the netplan
+  become: true
+  shell: netplan apply
