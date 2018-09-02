@@ -1,0 +1,10 @@
+- name: Set up unifi box
+  hosts: all
+  remote_user: grant
+  vars:
+    static_ip: 192.168.1.202
+  roles:
+    - static-ip
+    - unifi
+    - base
+

@@ -1,0 +1,12 @@
+---
+- name: copy unifi installation script
+  copy:
+    src: unifi-5.8.28.sh
+    dest: /tmp/unifi.sh
+
+- name: make it executable
+  shell: chmod +x /tmp/unifi.sh
+
+- name: execute the script
+  become: true
+  shell: /tmp/unifi.sh
