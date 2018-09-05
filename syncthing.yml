@@ -1,0 +1,9 @@
+- name: Set up the cron container
+  hosts: all
+  remote_user: grant
+  vars:
+    static_ip: 192.168.1.203
+  roles:
+    - static-ip
+    - base
+    - syncthing
