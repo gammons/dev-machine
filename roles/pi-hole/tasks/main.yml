@@ -1,0 +1,14 @@
+---
+- name: create /etc/pihole dir
+  become: true
+  file: path=/etc/pihole state=directory
+
+- name: set up setupVars.conf
+  become: true
+  copy:
+    src: setupVars.conf
+    dest: /etc/pihole/setupVars.conf
+
+- name: install pi-hole unattended
+  become: true
+  shell: curl -L https://install.pi-hole.net | sudo bash /dev/stdin --unattended
