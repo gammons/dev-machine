@@ -1,0 +1,12 @@
+---
+- name: Setup base packages
+  become: true
+  apt: pkg={{ item }}
+  with_items:
+    - mail-stack-delivery
+    - letsencrypt
+
+# - name: generate ssl cert
+#   become: true
+#   shell: letsencrypt certonly --standalone -d mail.grantammons.me --agree-tos --email gammons@gmail.com --non-interactive
+#

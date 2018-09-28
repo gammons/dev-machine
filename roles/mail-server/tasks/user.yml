@@ -1,0 +1,27 @@
+---
+- name: Add grant
+  become: true
+  user:
+    name: grant
+    shell: /bin/bash
+    append: yes
+    groups: sudo
+    home: /home/grant
+
+- name: Create grant .ssh dir
+  become: true
+  file: 
+    path: /home/grant/.ssh
+    owner: grant
+    group: grant
+    state: directory
+    mode: 0700
+
+- name: Get grant public key 
+  become: true
+  get_url: 
+    owner: grant
+    group: grant
+    url: https://github.com/gammons.keys
+    dest: /home/grant/.ssh/authorized_keys
+    mode: 0600

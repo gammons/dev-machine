@@ -1,0 +1,53 @@
+- name: Install Dovecot and related packages
+  become: true
+  apt: pkg={{ item }} update_cache=yes state=installed
+  with_items:
+    #- dovecot-pgsql
+    - dovecot-antispam
+
+- name: copy conf.d files
+  become: true
+  copy:
+    src: dovecot/conf.d/
+    dest: /etc/dovecot/conf.d/
+
+- name: copy sieve-before.d dir
+  become: true
+  copy:
+    src: dovecot/sieve-before.d
+    dest: /etc/dovecot/
+
+- name: ensure sieve-after.d is present
+  become: true
+  file:
+    path: /etc/dovecot/sieve-after.d
+    state: directory
+
+- name: copy sieve dir
+  become: true
+  copy:
+    src: dovecot/sieve
+    dest: /etc/dovecot/
+
+- name: make sure the trainers are executable
+  become: true
+  shell: chmod +x *.sh
+  args:
+    chdir: /etc/dovecot/sieve
+
+- name: restart dovecot
+  become: true
+  shell: service dovecot reload 
+
+- name: run sievec on report-spam.sieve
+  become: true
+  shell: sievec report-spam.sieve
+  args:
+    chdir: /etc/dovecot/sieve
+
+- name: run sievec on report-spam.sieve
+  become: true
+  shell: sievec report-ham.sieve
+  args:
+    chdir: /etc/dovecot/sieve
+

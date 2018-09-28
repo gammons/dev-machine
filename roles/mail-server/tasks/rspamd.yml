@@ -1,0 +1,48 @@
+---
+# Installs and configures the Rspamd spam filtering system.
+
+- name: Ensure repository key for Rspamd is in place
+  become: true
+  apt_key: url=https://rspamd.com/apt-stable/gpg.key state=present
+
+- name: Add Rspamd repository
+  become: true
+  apt_repository: repo="deb https://rspamd.com/apt-stable/ {{ ansible_distribution_release }} main"
+
+- name: Install Rspamd and Redis
+  become: true
+  apt: pkg={{ item }} state=installed update_cache=yes
+  with_items:
+    - rspamd
+    - redis-server
+
+- name: copy local.d files
+  become: true
+  copy:
+    src: rspamd/local.d/
+    dest: /etc/rspamd/local.d/
+
+- name: copy override.d files
+  become: true
+  copy:
+    src: rspamd/override.d/
+    dest: /etc/rspamd/override.d/
+
+- name: Create dkim key directory
+  become: true
+  file: path=/var/lib/rspamd/dkim state=directory owner=_rspamd group=_rspamd
+
+- name: Generate DKIM keys
+  become: true
+  shell: rspamadm dkim_keygen -s default -d grantammons.me -k grantammons.me.default.key > grantammons.me.default.txt
+  args:
+    creates: /var/lib/rspamd/dkim/grantamons.me.default.key
+    chdir: /var/lib/rspamd/dkim/
+
+- name: Start redis
+  become: true
+  service: name=redis-server state=started
+
+- name: restart rspamd
+  become: true
+  shell: service rspamd reload

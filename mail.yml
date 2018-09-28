@@ -1,0 +1,7 @@
+- name: Set up mail instance
+  hosts: mail
+  remote_user: ubuntu
+  gather_facts: true
+  roles:
+    - mail-server
+

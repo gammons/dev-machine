@@ -1,0 +1,7 @@
+- name: Set up mail ec2 instance
+  hosts: localhost
+  remote_user: ubuntu
+  gather_facts: true
+  roles:
+    - ec2
+

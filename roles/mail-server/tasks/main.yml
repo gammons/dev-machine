@@ -1,0 +1,9 @@
+---
+- include: libs.yml
+- include: user.yml
+- include: postfix.yml
+- include: dovecot.yml 
+  tags: dovecot
+- include: rspamd.yml
+  tags: rspamd
+
