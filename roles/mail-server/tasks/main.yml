@@ -6,4 +6,5 @@
   tags: dovecot
 - include: rspamd.yml
   tags: rspamd
-
+- include: restic.yml
+  tags: restic
