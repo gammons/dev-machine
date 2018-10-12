@@ -12,3 +12,8 @@ desc "set up cron container"
 task :setup_cron_container do
   system "ansible-playbook -i hosts --ask-sudo-pass --limit cron cron-container.yml"
 end
+
+desc "set up syncthing"
+task :setup_syncthing do
+  system "ansible-playbook -i hosts --ask-sudo-pass --limit syncthing syncthing.yml"
+end
