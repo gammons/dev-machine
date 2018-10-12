@@ -1,1 +1,1 @@
-exec /usr/bin/rspamc -h /var/run/rspamd/rspamd.sock learn_spam
+exec /usr/bin/rspamc learn_spam
