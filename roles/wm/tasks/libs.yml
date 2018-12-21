@@ -22,5 +22,6 @@
     - automake
     - libxcb-shape0-dev
     - xbacklight
+    - xclip
     - syncthing
 
