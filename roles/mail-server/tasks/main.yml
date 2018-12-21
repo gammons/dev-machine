@@ -1,6 +1,8 @@
 ---
 - include: libs.yml
 - include: user.yml
+- include: efs.yml
+  tags: efs
 - include: postfix.yml
 - include: dovecot.yml
   tags: dovecot
@@ -9,4 +11,5 @@
 - include: restic.yml
   tags: restic
 - include: letsencrypt.yml
+  tags: letsencrypt
   tags: letsencrypt

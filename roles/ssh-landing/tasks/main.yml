@@ -1,0 +1,7 @@
+---
+# add these:
+# -N SSHATTACK
+# -A SSHATTACK -j LOG --log-prefix "Possible SSH attack! " --log-level 7
+# -A SSHATTACK -j DROP
+# -A INPUT -p tcp -m state --dport 22 --state NEW -m recent --set
+#-A INPUT -p tcp -m state --dport 22 --state NEW -m recent --update --seconds 600 --hitcount 10 -j SSHATTACK

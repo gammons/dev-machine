@@ -1,5 +1,6 @@
 ---
 # Installs and configures the Rspamd spam filtering system.
+# GOOD GUIDE: https://thomas-leister.de/en/mailserver-debian-stretch/
 
 - name: Ensure repository key for Rspamd is in place
   become: true
@@ -21,12 +22,6 @@
   copy:
     src: rspamd/local.d/
     dest: /etc/rspamd/local.d/
-
-- name: copy override.d files
-  become: true
-  copy:
-    src: rspamd/override.d/
-    dest: /etc/rspamd/override.d/
 
 - name: Create dkim key directory
   become: true
