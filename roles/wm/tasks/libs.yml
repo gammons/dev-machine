@@ -21,4 +21,6 @@
     - libxcb-xrm-dev
     - automake
     - libxcb-shape0-dev
+    - xbacklight
+    - syncthing
 
