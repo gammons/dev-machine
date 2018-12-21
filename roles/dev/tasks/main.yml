@@ -13,9 +13,6 @@
     name: golang-go
     state: present
 
-- name: install tmuxinator
-  shell: gem install tmuxinator
-
 - name: install yarn key
   become: true
   apt_key:
@@ -23,7 +20,7 @@
 
 - name: add latest node repo
   become: true
-  shell: curl -sL https://deb.nodesource.com/setup_6.x
+  shell: curl -sL https://deb.nodesource.com/setup_10.x
 
 - name: install nodejs
   become: true
