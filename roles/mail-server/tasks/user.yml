@@ -3,6 +3,7 @@
   become: true
   user:
     name: grant
+    password: "{{ lookup('env','GRANT_PASSWORD') }}"
     shell: /bin/bash
     append: yes
     groups: sudo

@@ -19,7 +19,7 @@ task :setup_syncthing do
 end
 
 # assumes efs is already populated with things
-desc "Set up a mail server on ec2"
+desc "Set up a mail server on ec2 -- ensure GRANT_PASSWORD and EFS_FILESYSTEM_ID are set "
 task :setup_mailserver do
   system %{"ansible-playbook -i hosts mail.yml --skip-tags "mail-master"}
 end

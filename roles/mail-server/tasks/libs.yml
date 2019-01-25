@@ -1,4 +1,8 @@
 ---
+- name: set hostname
+  become: true
+  shell: hostname mail.grantammons.me
+
 - name: Setup base packages
   become: true
   apt: pkg={{ item }}
