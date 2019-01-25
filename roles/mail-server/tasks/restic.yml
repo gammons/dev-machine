@@ -5,16 +5,16 @@
   with_items:
     - restic
 
-- name: initialize restic rep
-  become: true
-  become_user: grant
-  shell: restic -r s3:s3.amazonaws.com/gammons-maildir-backup init
-  args:
-    chdir: /home/grant
-  environment:
-    AWS_ACCESS_KEY_ID: "{{ lookup('env','RESTIC_AWS_ACCESS_KEY_ID') }}"
-    AWS_SECRET_ACCESS_KEY: "{{ lookup('env','RESTIC_AWS_SECRET_ACCESS_KEY') }}"
-    RESTIC_PASSWORD: "{{ lookup('env','RESTIC_PASSWORD') }}"
+# - name: initialize restic rep
+#   become: true
+#   become_user: grant
+#   shell: restic -r s3:s3.amazonaws.com/gammons-maildir-backup init
+#   args:
+#     chdir: /home/grant
+#   environment:
+#     AWS_ACCESS_KEY_ID: "{{ lookup('env','RESTIC_AWS_ACCESS_KEY_ID') }}"
+#     AWS_SECRET_ACCESS_KEY: "{{ lookup('env','RESTIC_AWS_SECRET_ACCESS_KEY') }}"
+#     RESTIC_PASSWORD: "{{ lookup('env','RESTIC_PASSWORD') }}"
 
 
 - name: add SHELL env var to crontab

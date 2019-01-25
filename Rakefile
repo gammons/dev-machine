@@ -17,3 +17,9 @@ desc "set up syncthing"
 task :setup_syncthing do
   system "ansible-playbook -i hosts --ask-sudo-pass --limit syncthing syncthing.yml"
 end
+
+# assumes efs is already populated with things
+desc "Set up a mail server on ec2"
+task :setup_mailserver do
+  system %{"ansible-playbook -i hosts mail.yml --skip-tags "mail-master"}
+end

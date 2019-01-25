@@ -10,18 +10,27 @@
 
 - name: Create grant .ssh dir
   become: true
-  file: 
+  file:
     path: /home/grant/.ssh
     owner: grant
     group: grant
     state: directory
     mode: 0700
 
-- name: Get grant public key 
+- name: Get grant public key
   become: true
-  get_url: 
+  get_url:
     owner: grant
     group: grant
     url: https://github.com/gammons.keys
     dest: /home/grant/.ssh/authorized_keys
+    mode: 0600
+
+- name: copy over sieve scripts from efs
+  become: true
+  file:
+    owner: grant
+    group: grant
+    src: /efs/sieve
+    dest: /home/grant/sieve
     mode: 0600

@@ -1,7 +1,13 @@
 - name: Set up mail instance
   hosts: mail
-  remote_user: grant
+  remote_user: ubuntu
   gather_facts: true
   roles:
-    - base
+    - mail-server
 
+# - name: Add base for grant user
+#   hosts: mail
+#   remote_user: grant
+#   gather_facts: true
+#   roles:
+#     - base

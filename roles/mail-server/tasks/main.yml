@@ -9,7 +9,9 @@
 - include: rspamd.yml
   tags: rspamd
 - include: restic.yml
-  tags: restic
+  tags:
+    - restic
+    - mail-master
 - include: letsencrypt.yml
   tags: letsencrypt
   tags: letsencrypt

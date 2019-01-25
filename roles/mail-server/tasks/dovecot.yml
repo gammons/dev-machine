@@ -2,7 +2,6 @@
   become: true
   apt: pkg={{ item }} update_cache=yes state=installed
   with_items:
-    #- dovecot-pgsql
     - dovecot-antispam
 
 - name: copy conf.d files
@@ -37,17 +36,17 @@
 
 - name: restart dovecot
   become: true
-  shell: service dovecot reload 
+  shell: service dovecot reload
 
-- name: run sievec on report-spam.sieve
-  become: true
-  shell: sievec report-spam.sieve
-  args:
-    chdir: /etc/dovecot/sieve
-
-- name: run sievec on report-spam.sieve
-  become: true
-  shell: sievec report-ham.sieve
-  args:
-    chdir: /etc/dovecot/sieve
-
+# - name: run sievec on report-spam.sieve
+#   become: true
+#   shell: sievec report-spam.sieve
+#   args:
+#     chdir: /etc/dovecot/sieve
+#
+# - name: run sievec on report-spam.sieve
+#   become: true
+#   shell: sievec report-ham.sieve
+#   args:
+#     chdir: /etc/dovecot/sieve
+#

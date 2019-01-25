@@ -13,6 +13,7 @@
     value: /bin/bash
 
 - name: add renew job
+  tags: mail-master
   become: true
   cron:
     hour: 3

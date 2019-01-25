@@ -21,11 +21,26 @@
   become: true
   shell: postmap /etc/postfix/virtual
 
+- name: remove ssl dir
+  become: true
+  file:
+    name: /etc/ssl
+    state: absent
+
+- name: symlink ssl dir from /efs
+  become: true
+  file:
+    src: /efs/ssl
+    dest: /etc/ssl
+    state: link
+
 - name: create openssl dh512
+  tags: mail-master
   become: true
   shell: openssl dhparam -out /etc/ssl/dh512.pem 512
 
 - name: create openssl dh2048
+  tags: mail-master
   become: true
   shell: openssl dhparam -out /etc/ssl/dh1024.pem 2048
 

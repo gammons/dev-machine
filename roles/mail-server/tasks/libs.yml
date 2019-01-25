@@ -6,7 +6,8 @@
     - mail-stack-delivery
     - letsencrypt
 
-# - name: generate ssl cert
-#   become: true
-#   shell: letsencrypt certonly --standalone -d mail.grantammons.me --agree-tos --email gammons@gmail.com --non-interactive
-#
+- name: generate ssl cert
+  tags: mail-master
+  become: true
+  shell: letsencrypt certonly --standalone -d mail.grantammons.me --agree-tos --email gammons@gmail.com --non-interactive
+

@@ -1,6 +1,7 @@
 ---
 - name: Ensure NFS is installed
-  package: "name=nfs-common state=installed"
+  package: "name=nfs-common state=present"
+  become: true
 
 - name: Get current AZ from AWS
   uri:
@@ -9,6 +10,7 @@
   register: aws_current_az
 
 - name: Ensure EFS directory exists
+  become: true
   file:
     path: "/efs"
     state: directory
@@ -16,6 +18,7 @@
     mode: 0775
 
 - name: Ensure EFS volume is mounted
+  become: true
   mount:
     name: "/efs"
     src: "{{ aws_current_az.content }}.{{ efs_file_system_id }}.efs.{{ aws_region }}.amazonaws.com:/"
