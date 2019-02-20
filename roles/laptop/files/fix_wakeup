@@ -1,0 +1,6 @@
+echo deep > /sys/power/mem_sleep
+/bin/echo RP05 > /proc/acpi/wakeup
+/bin/echo RP07 > /proc/acpi/wakeup
+/bin/echo PXSX > /proc/acpi/wakeup
+/bin/echo RP13 > /proc/acpi/wakeup
+/bin/echo XHC > /proc/acpi/wakeup

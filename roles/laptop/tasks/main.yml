@@ -1,0 +1,14 @@
+---
+- name: copy fix_laptop binary over to /usr/local/bin
+  become: true
+  copy:
+    src: fix_wakeup
+    dest: /usr/local/bin/
+
+- name: copy systemd entry to run it
+  become: true
+  copy:
+    src: suspendfix.service
+    dest: /etc/systemd/system/
+
+

@@ -1,0 +1,36 @@
+---
+- name: Setup base packages
+  become: true
+  pacman: name={{ item }}
+  with_items:
+    - base-devel
+    - vim
+    - git
+    - nt
+    - tmux
+    - htop
+    - the_silver_searcher
+    - tig
+    - zsh
+    - ntp
+    - curl
+    - aws-cli
+
+- name: Install vim-plug
+  shell: curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+- name: Change shell to zsh
+  become: true
+  user:
+    name: "{{ lookup('env', 'USER') }}"
+    shell: /bin/zsh
+
+- name: clone thoughtbot's dotfiles
+  git:
+    repo: https://github.com/gammons/dotfiles.git
+    dest: ~/dotfiles
+
+- name: clone my dotfiles
+  git:
+    repo: 'https://github.com/gammons/dotfiles-local.git'
+    dest: ~/dotfiles-local
