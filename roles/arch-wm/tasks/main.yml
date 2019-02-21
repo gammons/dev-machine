@@ -1,0 +1,22 @@
+---
+- name: Setup base packages
+  become: true
+  pacman: name={{ item }}
+  with_items:
+    - i3-gaps
+    - xbacklight
+    - xclip
+    - syncthing
+    - pasystray
+    - imwheel
+    - v4l2ucp
+    - i3lock
+    - xautolock
+    - feh
+    - numlockx
+    - rofi
+    - ttf-font-awesome
+    - ttf-inconsolata
+    - dunst
+      #- redshift-gtk
+    - spectacle

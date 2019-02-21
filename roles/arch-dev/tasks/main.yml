@@ -1,0 +1,24 @@
+---
+- name: Setup dev packages
+  become: true
+  pacman: name={{ item }}
+  with_items:
+    - go
+    - nodejs
+    - yarn
+
+- name: download chruby and ruby-install
+  become: true
+  shell: yay -S --noconfirm chruby ruby-install
+
+- name: install latest ruby
+  become: true
+  shell: ruby-install --system ruby
+
+- name: install bundler
+  become: true
+  shell: gem install bundler
+
+- name: increase number of fs inotify watches
+  become: true
+  shell: echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf && sysctl -p
