@@ -8,7 +8,6 @@
     - yarn
 
 - name: download chruby and ruby-install
-  become: true
   shell: yay -S --noconfirm chruby ruby-install
 
 - name: install latest ruby
