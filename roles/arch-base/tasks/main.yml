@@ -1,4 +1,8 @@
 ---
+- name: Sync pacman
+  become: true
+  shell: pacman -Syu --noconfirm
+
 - name: Setup base packages
   become: true
   pacman: name={{ item }}
