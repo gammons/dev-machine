@@ -50,3 +50,12 @@
 
 - name: add fzf
   shell: yay -S --noconfirm fzf
+
+- name: Get grant public key
+  become: true
+  get_url:
+    owner: grant
+    group: grant
+    url: https://github.com/gammons.keys
+    dest: /home/grant/.ssh/authorized_keys
+    mode: 0600
