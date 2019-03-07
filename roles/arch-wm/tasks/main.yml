@@ -19,5 +19,16 @@
     - ttf-font-awesome
     - ttf-inconsolata
     - dunst
-      #- redshift-gtk
+    - plasma5-applets-redshift-control
     - spectacle
+    - networkmanager
+    - network-manager-applet
+    - ttf-dejavu
+    - ttf-ubuntu-font-family
+    - tlp
+    - powerline
+
+
+- name: add fzf
+  shell: yay -S --noconfirm polybar
+
