@@ -32,7 +32,7 @@
     - pulseaudio
     - alsa-utils
     - awesome-terminal-fonts
-    - cpupower
+    - cpupowe
 
 - name: add fzf
   shell: yay -S --noconfirm fzf polybar ttf-weather-icons
