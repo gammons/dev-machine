@@ -7,7 +7,7 @@
     - xf86-video-intel
     - xorg-xinit
     - i3-gaps
-      #- xbacklight // try acpilight?
+    - xorg-xbacklight
     - xclip
     - syncthing
     - pasystray
@@ -29,10 +29,13 @@
     - ttf-ubuntu-font-family
     - tlp
     - powerline
+    - pulseaudio
+    - alsa-utils
+    - awesome-terminal-fonts
+    - cpupower
 
 - name: add fzf
-  shell: yay -S --noconfirm polybar
-
+  shell: yay -S --noconfirm fzf polybar ttf-weather-icons
 
 - name: enable networkmanager
   become: true
