@@ -3,6 +3,8 @@
   become: true
   pacman: name={{ item }}
   with_items:
+    - xorg
+    - xf86-video-intel
     - xorg-xinit
     - i3-gaps
       #- xbacklight // try acpilight?
