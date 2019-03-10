@@ -30,7 +30,14 @@
     - tlp
     - powerline
 
-
 - name: add fzf
   shell: yay -S --noconfirm polybar
 
+
+- name: enable networkmanager
+  become: true
+  shell: systemctl enable NetworkManager.service
+
+- name: start networkmanager
+  become: true
+  shell: systemctl start NetworkManager.service
