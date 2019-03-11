@@ -33,6 +33,7 @@
     - alsa-utils
     - awesome-terminal-fonts
     - cpupower
+    - playerctl
 
 - name: add fzf
   shell: yay -S --noconfirm fzf polybar ttf-weather-icons
