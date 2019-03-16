@@ -18,7 +18,6 @@
     - feh
     - numlockx
     - rofi
-    - ttf-font-awesome
     - ttf-inconsolata
     - dunst
     - plasma5-applets-redshift-control
@@ -27,12 +26,15 @@
     - network-manager-applet
     - ttf-dejavu
     - ttf-ubuntu-font-family
+    - ttf-font-awesome
+    - awesome-terminal-fonts
+    - noto-fonts-emoji
     - tlp
     - powerline
     - pulseaudio
     - alsa-utils
-    - awesome-terminal-fonts
-    - cpupowe
+    - cpupower
+    - playerctl
 
 - name: add fzf
   shell: yay -S --noconfirm fzf polybar ttf-weather-icons
