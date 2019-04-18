@@ -4,6 +4,7 @@
   apt: pkg={{ item }}
   with_items:
     - build-essential
+    - unattended-upgrades
     - vim
     - git
     - ntp
