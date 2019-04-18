@@ -18,3 +18,9 @@
 
 [pi-hole]
 192.168.1.61
+
+[bitwarden]
+bitwarden
+
+[algo]
+192.168.1.115
