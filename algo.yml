@@ -1,0 +1,10 @@
+# in order to get bitwarden to work, the lxc container needs special permissions.
+# run this:
+# sudo lxc config set bitwarden security.nesting true
+- name: Set up algo
+  hosts: algo
+  remote_user: grant
+  vars:
+    static_ip: 192.168.1.207
+  roles:
+    - static-ip
