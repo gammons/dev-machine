@@ -1,0 +1,23 @@
+---
+- name: Setup base packages
+  become: true
+  apt: pkg={{ item }}
+  with_items:
+    - build-essential
+    - docker.io
+    - unattended-upgrades
+    - vim
+    - git
+    - ntp
+    - tmux
+    - htop
+    - silversearcher-ag
+    - tig
+    - ntp
+    - curl
+    - ansible
+    - awscli
+
+- name: ensure grant has access to docker services
+  become: true
+  shell: usermod -aG docker grant

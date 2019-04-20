@@ -1,12 +1,21 @@
 ---
-- name: copy unifi installation script
+- name: create unifi directories
+  file:
+    path: /home/grant/unifi/data
+    state: directory
+
+- name: create unifi directories
+  file:
+    path: /home/grant/unifi/log
+    state: directory
+
+- name: create systemd file
   copy:
-    src: unifi-5.8.28.sh
-    dest: /tmp/unifi.sh
+    src: unifi.service
+    dest: /home/grant/.config/systemd/user/
 
-- name: make it executable
-  shell: chmod +x /tmp/unifi.sh
+- name: enable unifi service
+  shell: systemctl --user enable unifi.service
 
-- name: execute the script
-  become: true
-  shell: /tmp/unifi.sh
+- name: start unifi service
+  shell: systemctl --user start unifi.service
