@@ -18,9 +18,9 @@
     state: present
 
 - name: install the syncthing systemd service
-  get_url:
-    url: https://raw.githubusercontent.com/syncthing/syncthing/master/etc/linux-systemd/user/syncthing.service
-    dest: ~/syncthing.service
+  copy:
+    src: syncthing.service
+    dest: ~/.config/systemd/user/syncthing.service
 
 - name: register the syncthing systemd service
   shell: systemctl --user enable syncthing.service
