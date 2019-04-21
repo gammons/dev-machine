@@ -3,7 +3,7 @@ Description=Unifi service
 Documentation=man:unifi(1)
 
 [Service]
-ExecStart=/usr/bin/docker run --rm --init -p 8080:8080 -p 8443:8443 -p 3478:3478/udp -p 10001:10001/udp -e TZ='America/New_York' -v /home/grant/unifi:/unifi --name unifi jacobalberty/unifi:stable
+ExecStart=/usr/bin/docker run --net=host --rm --init -p 8080:8080 -p 8443:8443 -p 3478:3478/udp -p 10001:10001/udp -e TZ='America/New_York' -v /home/grant/unifi:/unifi --name unifi jacobalberty/unifi:stable
 Restart=on-failure
 SuccessExitStatus=3 4
 RestartForceExitStatus=3 4
