@@ -1,9 +1,0 @@
-- name: Set up pi-hole
-  hosts: all
-  remote_user: grant
-  vars:
-    static_ip: 192.168.1.204
-  roles:
-    - static-ip
-    - base
-    - pi-hole
