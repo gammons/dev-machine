@@ -10,12 +10,13 @@
     state: directory
 
 - name: create systemd file
+  become: true
   copy:
     src: unifi.service
-    dest: /home/grant/.config/systemd/user/
+    dest: /etc/systemd/system/
 
 - name: enable unifi service
-  shell: systemctl --user enable unifi.service
+  shell: systemctl enable unifi.service
 
 - name: start unifi service
-  shell: systemctl --user start unifi.service
+  shell: systemctl start unifi.service

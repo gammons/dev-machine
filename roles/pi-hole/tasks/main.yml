@@ -1,9 +1,12 @@
 ---
-- name: get the install script
-  get_url:
-    url: https://github.com/pi-hole/docker-pi-hole/blob/master/docker_run.sh
-    dest: docker_run.sh
-    mode: 0744
+- name: create systemd file
+  become: true
+  copy:
+    src: unifi.service
+    dest: /etc/systemd/system/
 
-- name: run the install script
-  shell: ./docker_run.sh
+- name: enable unifi service
+  shell: systemctl enable unifi.service
+
+- name: start unifi service
+  shell: systemctl start unifi.service

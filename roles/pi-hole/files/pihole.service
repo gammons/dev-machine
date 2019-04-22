@@ -1,0 +1,19 @@
+[Unit]
+Description=Unifi service
+Documentation=man:unifi(1)
+
+[Service]
+ExecStart=/usr/bin/docker run -name pihole -p 53:53/tcp -p 53:53/udp -p 80:80 -p 443:443 -e TZ="America/Chicago" -v "/home/grant/etc-pihole/:/etc/pihole/" -v "/home/grant/etc-dnsmasq.d/:/etc/dnsmasq.d/" --dns=127.0.0.1 --dns=1.1.1.1 --restart=unless-stopped pihole/pihole:latest
+Restart=on-failure
+SuccessExitStatus=3 4
+RestartForceExitStatus=3 4
+
+# Hardening
+ProtectSystem=full
+PrivateTmp=true
+SystemCallArchitectures=native
+MemoryDenyWriteExecute=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target
