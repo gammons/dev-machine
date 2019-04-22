@@ -13,7 +13,7 @@
   become: true
   copy:
     src: unifi.service
-    dest: /etc/systemd/system/
+    dest: /etc/systemd/system/unifi.service
 
 - name: enable unifi service
   shell: systemctl enable unifi.service

@@ -2,11 +2,11 @@
 - name: create systemd file
   become: true
   copy:
-    src: unifi.service
-    dest: /etc/systemd/system/
+    src: pihole.service
+    dest: /etc/systemd/system/pihole.service
 
-- name: enable unifi service
-  shell: systemctl enable unifi.service
+- name: enable pihole service
+  shell: systemctl enable pihole.service
 
-- name: start unifi service
-  shell: systemctl start unifi.service
+- name: start pihole service
+  shell: systemctl start pihole.service

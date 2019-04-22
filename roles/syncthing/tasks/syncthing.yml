@@ -1,0 +1,30 @@
+---
+- name: add the syncthing apt key
+  become: true
+  apt_key:
+    url: https://syncthing.net/release-key.txt
+    state: present
+
+- name: add the syncthing apt repo
+  become: true
+  apt_repository:
+    repo: deb https://apt.syncthing.net/ syncthing stable
+    state: present
+
+- name: install syncthing
+  become: true
+  apt:
+    name: syncthing
+    state: present
+
+- name: install the syncthing systemd service
+  become: true
+  copy:
+    src: syncthing.service
+    dest: /etc/systemd/system/syncthing.service
+
+- name: register the syncthing systemd service
+  shell: systemctl enable syncthing.service
+
+- name: start the syncthing service
+  shell: systemctl start syncthing.service
