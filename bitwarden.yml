@@ -5,8 +5,8 @@
   hosts: bitwarden
   remote_user: grant
   vars:
-    static_ip: 192.168.1.206
+    static_ip: 192.168.1.204
   roles:
-    - static-ip
-    - base
+    # - base-server
+    # - static-ip
     - bitwarden

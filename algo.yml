@@ -5,6 +5,7 @@
   hosts: algo
   remote_user: grant
   vars:
-    static_ip: 192.168.1.207
+    static_ip: 192.168.1.203
   roles:
+    - base-server
     - static-ip

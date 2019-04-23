@@ -2,8 +2,10 @@
   hosts: unifi
   remote_user: grant
   vars:
-    static_ip: 192.168.1.201
+    static_ip: 192.168.1.202
   roles:
     - base-server
     #- static-ip
-    - unifi
+    #- unifi
+    #- pi-hole
+    #- syncthing

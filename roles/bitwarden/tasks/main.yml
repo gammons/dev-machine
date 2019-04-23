@@ -1,7 +1,3 @@
 ---
-- name: install deps
-  apt: pkg={{ item }}
-  with_items:
-    - docker.io
-    - docker-compose
-
+#- include: bitwarden.yml
+- include: restic.yml
