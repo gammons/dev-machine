@@ -1,0 +1,2 @@
+aws_region: us-east-2
+efs_file_system_id: "{{ lookup('env','EFS_FILESYSTEM_ID') }}"

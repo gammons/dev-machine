@@ -1,0 +1,7 @@
+---
+- include: libs.yml
+- include: get_mail.yml
+- include: postfix.yml
+- include: dovecot.yml
+- include: rspamd.yml
+- include: letsencrypt.yml

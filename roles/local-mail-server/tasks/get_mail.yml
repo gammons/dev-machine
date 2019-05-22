@@ -1,0 +1,79 @@
+---
+- name: Ensure EFS directory exists
+  file:
+    path: "/efs"
+    state: directory
+    group: grant
+    mode: 0775
+
+- name: create .ssh dir for /root
+  become: true
+  file:
+    path: /root/.ssh
+    state: directory
+    mode: 0600
+
+- name: copy private key to server
+  become: true
+  become_user: grant
+  copy:
+    src: postfix.privkey
+    dest: ~/.ssh/id_rsa
+    mode: 0600
+
+- name: change uid of grant user
+  shell: usermod -u 1001 grant
+
+- name: change gid of grant user
+  shell: groupmod -g 1001 grant
+
+- name: bootstrap contents of remote /efs to local
+  become: true
+  become_user: grant
+  shell: rsync -avz grant@mail.grantammons.me:/efs/Maildir/ /efs/Maildir/
+
+- name: chown contents of /efs to grant
+  shell: chown -R grant:grant /efs/*
+
+- name: Symlink Maildir directory
+  become: true
+  become_user: grant
+  file:
+    src: /efs/Maildir
+    dest: /home/grant/Maildir
+    state: link
+
+- name: Symlink sieve directory
+  become: true
+  become_user: grant
+  file:
+    src: /efs/sieve
+    dest: ~/sieve
+    state: link
+
+- name: Symlink sieve directory
+  become: true
+  become_user: grant
+  file:
+    src: /efs/sieve/index.sieve
+    dest: ~/.dovecot.sieve
+    state: link
+
+- name: run sieve for first time
+  become: true
+  become_user: grant
+  shell: sievec ~/.dovecot.sieve
+
+- name: set up cron task to push mail from local to remote
+  become: true
+  become_user: grant
+  cron:
+    minute: "0,30"
+    job: "rsync -avz /efs/Maildir/ grant@mail.grantammons.me:/efs/"
+
+- name: set up cron task to get mail from remote to local
+  become: true
+  become_user: grant
+  cron:
+    minute: "5,35"
+    job: "rsync -avz grant@mail.grantammons.me:/efs/Maildir/ /efs/"

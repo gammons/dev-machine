@@ -1,0 +1,62 @@
+---
+- name: Ensure EFS directory exists
+  file:
+    path: "/efs"
+    state: directory
+    group: grant
+    mode: 0775
+
+- name: create .ssh dir for /root
+  become: true
+  file:
+    path: /root/.ssh
+    state: directory
+    mode: 0600
+
+- name: copy private key for sshfs to server
+  become: true
+  copy:
+    src: postfix.privkey
+    dest: /root/.ssh/id_rsa
+    mode: 0600
+
+- name: change uid of grant user
+  shell: usermod -u 1001 grant
+
+- name: change gid of grant user
+  shell: groupmod -g 1001 grant
+
+- name: put EFS volume in fstab
+  mount:
+    src: grant@mail.grantammons.me:/efs
+    fstype: fuse.sshfs
+    opts: "defaults,allow_other,IdentityFile=/root/.ssh/id_rsa,StrictHostKeyChecking=no"
+    path: /efs
+    state: mounted
+
+- name: mount EFS volume
+  shell: mount /efs 2&>1
+  register: result
+
+- name: debug output
+  debug:
+    var: result
+    verbosity: 2
+
+# - name: put EFS volume in fstab
+#   become: true
+#   lineinfile:
+#     path: /etc/fstab
+#     insertafter: EOF
+#     line: "sshfs#grant@mail.grantammons.me:/efs /efs fuse defaults,allow_other,IdentityFile=/root/.ssh/id_rsa,StrictHostKeyChecking=no 0 0"
+#
+# - name: mount EFS volume
+#   shell: mount /efs
+
+- name: Symlink Maildir directory
+  become: true
+  become_user: grant
+  file:
+    src: /efs/Maildir
+    dest: /home/grant/Maildir
+    state: link

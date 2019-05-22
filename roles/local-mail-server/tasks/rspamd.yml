@@ -1,0 +1,32 @@
+---
+# Installs and configures the Rspamd spam filtering system.
+# GOOD GUIDE: https://thomas-leister.de/en/mailserver-debian-stretch/
+
+- name: Ensure repository key for Rspamd is in place
+  become: true
+  apt_key: url=https://rspamd.com/apt-stable/gpg.key state=present
+
+- name: Add Rspamd repository
+  become: true
+  apt_repository: repo="deb https://rspamd.com/apt-stable/ {{ ansible_distribution_release }} main"
+
+- name: Install Rspamd and Redis
+  become: true
+  apt: pkg={{ item }} state=installed update_cache=yes
+  with_items:
+    - rspamd
+    - redis-server
+
+- name: copy local.d files
+  become: true
+  copy:
+    src: rspamd/local.d/
+    dest: /etc/rspamd/local.d/
+
+- name: Start redis
+  become: true
+  service: name=redis-server state=started
+
+- name: restart rspamd
+  become: true
+  shell: service rspamd reload

@@ -1,0 +1,9 @@
+- name: Set up mail instance
+  hosts: local-mail
+  remote_user: root
+  gather_facts: true
+  vars:
+    static_ip: 192.168.1.205
+  roles:
+    #- static-ip
+    - local-mail-server

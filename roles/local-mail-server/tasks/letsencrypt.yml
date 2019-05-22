@@ -1,0 +1,15 @@
+---
+- name: add SHELL env var to crontab
+  become: true
+  cron:
+    name: SHELL
+    env: yes
+    value: /bin/bash
+
+- name: add renew job
+  tags: mail-master
+  become: true
+  cron:
+    hour: 3
+    minute: 30
+    job: "letsencrypt renew > /tmp/letsencrypt-renew 2>&1"
