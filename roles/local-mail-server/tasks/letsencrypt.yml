@@ -13,3 +13,14 @@
     hour: 3
     minute: 30
     job: "letsencrypt renew > /tmp/letsencrypt-renew 2>&1"
+
+- name: remove existing /etc/letsencrypt dir
+  become: true
+  shell: rm -rf /etc/letsencrypt
+
+- name: symlink letsencrypt dir
+  become: true
+  file:
+    src: /efs/letsencrypt
+    dest: /etc/letsencrypt
+    state: link
