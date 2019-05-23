@@ -5,3 +5,5 @@
 - include: dovecot.yml
 - include: rspamd.yml
 - include: letsencrypt.yml
+- include: restic.yml
+- include: archiver.yml

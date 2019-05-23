@@ -1,0 +1,7 @@
+---
+- name: add archiver script to cron
+  become: true
+  become_user: grant
+  cron:
+    minute: "25,55"
+    job: "cd ~/Maildir && ruby archiver.rb > /tmp/archiver.txt 2>&1"
