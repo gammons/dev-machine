@@ -38,6 +38,9 @@
   become: true
   shell: service dovecot reload
 
+# TODO: note that 99-mailstack-delivery.conf sets disable_plaintext_auth = yes, which overrides 10-auth.
+#
+
 # - name: run sievec on report-spam.sieve
 #   become: true
 #   shell: sievec report-spam.sieve
