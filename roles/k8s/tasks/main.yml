@@ -1,0 +1,43 @@
+---
+- name: disable the swap
+  become: true
+  shell: swapoff -a
+
+- name: Disable SWAP in fstab
+  become: true
+  replace:
+    path: /etc/fstab
+    regexp: '^([^#].*?\sswap\s+sw\s+.*)$'
+    replace: '# \1'
+
+- name: add google key
+  become: true
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+
+- name: add google repo
+  become: true
+  apt_repository:
+    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+    state: present
+
+- name: install kubelet
+  become: true
+  apt:
+    update_cache: yes
+    name: kubelet
+    state: present
+
+- name: install kubeadm
+  become: true
+  apt:
+    name: kubeadm
+    state: present
+
+- name: install kubernetes-cni
+  become: true
+  apt:
+    name: kubernetes-cni
+    state: present
+

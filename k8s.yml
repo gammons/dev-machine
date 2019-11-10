@@ -1,0 +1,8 @@
+# in order to get bitwarden to work, the lxc container needs special permissions.
+# run this:
+# sudo lxc config set bitwarden security.nesting true
+- name: Set up k8s-node1
+  hosts: k8s-master,k8s-node1,k8s-node2
+  remote_user: grant
+  roles:
+    - k8s
