@@ -41,3 +41,6 @@
     name: kubernetes-cni
     state: present
 
+- name: enable docker.service
+  become: true
+  shell: systemctl enable docker.service
