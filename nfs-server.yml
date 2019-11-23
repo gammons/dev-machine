@@ -1,0 +1,11 @@
+- name: Set up static-ip
+  hosts: nfs-server
+  remote_user: grant
+  vars:
+    static_ip: 192.168.140.220
+  roles:
+    - base-server
+    - nfs-server
+    - static-ip
+
+
