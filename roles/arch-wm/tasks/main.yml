@@ -12,7 +12,6 @@
     - syncthing
     - pasystray
     - imwheel
-    - v4l2ucp
     - i3lock
     - xautolock
     - feh
@@ -35,6 +34,8 @@
     - alsa-utils
     - cpupower
     - playerctl
+    - deepin-screenshot
+      yay -S deepin-screenshot brightnessctl cpupower docker docker-compose gdm jq kubectl-bin kubernetes-helm-git minikube-bin networkmanager-openvpn networkmanager-strongswan nmap remmina spotify slack-desktop steam xscreensaver zoom
 
 - name: add fzf
   shell: yay -S --noconfirm fzf polybar ttf-weather-icons
