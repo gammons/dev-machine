@@ -19,6 +19,8 @@
     - ntp
     - curl
     - aws-cli
+    - throttled
+    - fd
 
 - name: Install vim-plug
   shell: curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -55,11 +57,11 @@
 - name: add fzf
   shell: yay -S --noconfirm fzf
 
-# - name: Get grant public key
-#   become: true
-#   get_url:
-#     owner: grant
-#     group: grant
-#     url: https://github.com/gammons.keys
-#     dest: /home/grant/.ssh/id_rsa.pub
-#     mode: 0600
+- name: Get grant public key
+  become: true
+  get_url:
+    owner: grant
+    group: grant
+    url: https://github.com/gammons.keys
+    dest: /home/grant/.ssh/id_rsa.pub
+    mode: 0600

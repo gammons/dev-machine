@@ -4,8 +4,10 @@
   pacman: name={{ item }}
   with_items:
     - go
-    - nodejs
-    - yarn
+    - docker
+    - docker-compose
+    - docker-machine-driver-kvm2
+    - jq
 
 - name: download chruby and ruby-install
   shell: yay -S --noconfirm chruby ruby-install
@@ -21,3 +23,8 @@
 - name: increase number of fs inotify watches
   become: true
   shell: echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf && sysctl -p
+
+# needed for elasticsearch in docker
+- name: increase number of vm.max_map_count
+  become: true
+  shell: echo vm.max_map_count=262144 | tee -a /etc/sysctl.conf && sysctl -p

@@ -35,10 +35,12 @@
     - cpupower
     - playerctl
     - deepin-screenshot
-      yay -S deepin-screenshot brightnessctl cpupower docker docker-compose gdm jq kubectl-bin kubernetes-helm-git minikube-bin networkmanager-openvpn networkmanager-strongswan nmap remmina spotify slack-desktop steam xscreensaver zoom
+    - gdm
+    - powertop
+    - xscreensaver
 
 - name: add fzf
-  shell: yay -S --noconfirm fzf polybar ttf-weather-icons
+  shell: yay -S --noconfirm fzf polybar ttf-weather-icons slack-desktop zoom picom kubectl-bin kubernetes-helm-git minikube-bin networkmanager-openvpn networkmanager-strongswan nmap remmina spotify steam
 
 - name: enable networkmanager
   become: true
