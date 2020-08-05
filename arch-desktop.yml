@@ -1,0 +1,5 @@
+- name: Setup desktop env
+  hosts: all
+  roles:
+    - arch-base
+    - arch-wm

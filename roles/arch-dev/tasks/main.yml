@@ -8,6 +8,7 @@
     - docker-compose
     - docker-machine-driver-kvm2
     - jq
+    - netlify
 
 - name: download chruby and ruby-install
   shell: yay -S --noconfirm chruby ruby-install

@@ -26,6 +26,8 @@
     - ttf-dejavu
     - ttf-ubuntu-font-family
     - ttf-font-awesome
+    - ttf-weather-icons
+    - ttf-hack
     - awesome-terminal-fonts
     - noto-fonts-emoji
     - tlp
@@ -38,9 +40,11 @@
     - gdm
     - powertop
     - xscreensaver
+    - alacritty
+    - maim
 
 - name: add fzf
-  shell: yay -S --noconfirm fzf polybar ttf-weather-icons slack-desktop zoom picom kubectl-bin kubernetes-helm-git minikube-bin networkmanager-openvpn networkmanager-strongswan nmap remmina spotify steam
+  shell: yay -S --noconfirm fzf polybar ttf-weather-icons slack-desktop zoom picom kubectl-bin kubernetes-helm-git minikube-bin networkmanager-openvpn networkmanager-strongswan nmap remmina spotify steam google-chrome-beta i3-gnome kubectl-bin kubernetes-helm mysql-clients57 powder-toy starship-bin stripe-cli
 
 - name: enable networkmanager
   become: true
