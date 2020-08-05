@@ -7,5 +7,4 @@
   vars:
     static_ip: 192.168.1.203
   roles:
-    - base-server
     - static-ip
