@@ -40,9 +40,11 @@
       - kitty
       - maim
       - gnome-keyring
+      - gnome-flashback
+      - redshift
 
 - name: add gui packages from aur
-  shell: yay -S --noconfirm picom networkmanager-openvpn nmap remmina steam google-chrome i3-gnome
+  shell: yay -S --noconfirm picom networkmanager-openvpn nmap remmina steam google-chrome i3-gnome inkdrop
 
 - name: add a browser
   shell: yay -S google-chrome --noconfirm
@@ -50,7 +52,3 @@
 - name: enable networkmanager
   become: true
   shell: systemctl enable NetworkManager.service
-
-# - name: start networkmanager
-#   become: true
-#   shell: systemctl start NetworkManager.service

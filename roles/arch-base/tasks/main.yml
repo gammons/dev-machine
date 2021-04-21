@@ -50,6 +50,9 @@
 - name: add RCM
   shell: yay -S --noconfirm rcm
 
+- name: add exa
+  shell: yay -S exa --noconfirm
+
 - name: run rcup for first time
   shell: env RCRC=$HOME/dotfiles/rcrc rcup
   async: 30

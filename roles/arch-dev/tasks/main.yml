@@ -1,14 +1,12 @@
 ---
 - name: Setup dev packages
   become: true
-  pacman: name={{ item }}
-  with_items:
-    - go
-    - docker
-    - docker-compose
-    - docker-machine-driver-kvm2
-    - jq
-    - netlify
+  pacman:
+    name:
+      - go
+      - docker
+      - docker-compose
+      - jq
 
 - name: download chruby and ruby-install
   shell: yay -S --noconfirm chruby ruby-install
@@ -23,15 +21,31 @@
 
 - name: increase number of fs inotify watches
   become: true
-  shell: echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf && sysctl -p
+  shell: echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf
 
 # needed for elasticsearch in docker
 - name: increase number of vm.max_map_count
   become: true
-  shell: echo vm.max_map_count=262144 | tee -a /etc/sysctl.conf && sysctl -p
+  shell: echo vm.max_map_count=262144 | tee -a /etc/sysctl.conf
+
+- name: bounce sysctl
+  become: true
+  shell: sysctl -p
 
 - name: add kubernetes items
-  shell: yay -S --noconfirm kubectl-bin kubernetes-helm-git minikube-bin i3-gnome kubectl-bin kubernetes-helm
+  shell: yay -S --noconfirm kubectl-bin minikube-bin i3-gnome kubectl-bin kubernetes-helm
 
 - name: add stripe cli
   shell: yay -S --noconfirm stripe-cli
+
+- name: add asdf vm
+  shell: yay -S --noconfirm asdf-vm
+
+- name: python stuff
+  shell: yay -S --noconfirm python3 python-pip
+
+- name: ensure pynvim stuff is installed
+  shell: pip3 install --user pynvim
+
+- name: add yarn
+  shell: yay -S --noconfirm yarn

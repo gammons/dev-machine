@@ -3,5 +3,6 @@
   connection: local
   roles:
     - arch-base
+    - arch-dev
     - laptop
     - arch-wm
