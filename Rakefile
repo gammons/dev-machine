@@ -1,6 +1,11 @@
+desc "test in a docker container"
+task :docker_run do
+  system 'docker run -it --mount type=bind,source="$(pwd)",target=/home/grant/dev-machine archlinux:v2'
+end
+
 desc "set up dev machine locally"
 task :run_dev_machine_locally do
-  system 'ansible-playbook -i "localhost," -c local arch-dev-machine.yml --ask-sudo-pass'
+  system 'ansible-playbook arch-dev-machine.yml --ask-become-pass'
 end
 
 desc "set ssh landing machine"
