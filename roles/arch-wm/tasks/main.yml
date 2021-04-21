@@ -1,56 +1,56 @@
 ---
 - name: Setup base packages
   become: true
-  pacman: name={{ item }}
-  with_items:
-    - xorg
-    - xf86-video-intel
-    - xorg-xinit
-    - i3-gaps
-    - xorg-xbacklight
-    - xclip
-    - syncthing
-    - pasystray
-    - imwheel
-    - i3lock
-    - xautolock
-    - feh
-    - numlockx
-    - rofi
-    - ttf-inconsolata
-    - dunst
-    - plasma5-applets-redshift-control
-    - spectacle
-    - networkmanager
-    - network-manager-applet
-    - ttf-dejavu
-    - ttf-ubuntu-font-family
-    - ttf-font-awesome
-    - ttf-weather-icons
-    - ttf-hack
-    - awesome-terminal-fonts
-    - noto-fonts-emoji
-    - tlp
-    - powerline
-    - pulseaudio
-    - alsa-utils
-    - cpupower
-    - playerctl
-    - deepin-screenshot
-    - gdm
-    - powertop
-    - xscreensaver
-    - alacritty
-    - maim
-    - gnome-keyring
+  pacman:
+    name:
+      - xorg
+      - xf86-video-intel
+      - vulkan-intel
+      - xorg-xinit
+      - i3-gaps
+      - xorg-xbacklight
+      - xclip
+      - pasystray
+      - imwheel
+      - i3lock
+      - xautolock
+      - feh
+      - numlockx
+      - rofi
+      - dunst
+      - networkmanager
+      - network-manager-applet
+      - ttf-dejavu
+      - ttf-ubuntu-font-family
+      - ttf-font-awesome
+      - ttf-hack
+      - ttf-inconsolata
+      - ttf-roboto-mono
+      - powerline
+      - awesome-terminal-fonts
+      - noto-fonts-emoji
+      - tlp
+      - powertop
+      - pulseaudio
+      - alsa-utils
+      - cpupower
+      - playerctl
+      - lightdm
+      - xscreensaver
+      - kitty
+      - maim
+      - gnome-keyring
 
-- name: add fzf
-  shell: yay -S --noconfirm fzf polybar ttf-weather-icons slack-desktop zoom picom kubectl-bin kubernetes-helm-git minikube-bin networkmanager-openvpn networkmanager-strongswan nmap remmina spotify steam google-chrome-beta i3-gnome kubectl-bin kubernetes-helm mysql-clients57 powder-toy starship-bin stripe-cli
+- name: add gui packages from aur
+  shell: yay -S --noconfirm picom networkmanager-openvpn nmap remmina steam google-chrome i3-gnome
+
+- name: add a browser
+  shell: yay -S google-chrome --noconfirm
 
 - name: enable networkmanager
   become: true
   shell: systemctl enable NetworkManager.service
 
-- name: start networkmanager
-  become: true
-  shell: systemctl start NetworkManager.service
+# - name: start networkmanager
+#   become: true
+#   shell: systemctl start NetworkManager.service

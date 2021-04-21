@@ -29,3 +29,9 @@
 - name: increase number of vm.max_map_count
   become: true
   shell: echo vm.max_map_count=262144 | tee -a /etc/sysctl.conf && sysctl -p
+
+- name: add kubernetes items
+  shell: yay -S --noconfirm kubectl-bin kubernetes-helm-git minikube-bin i3-gnome kubectl-bin kubernetes-helm
+
+- name: add stripe cli
+  shell: yay -S --noconfirm stripe-cli
