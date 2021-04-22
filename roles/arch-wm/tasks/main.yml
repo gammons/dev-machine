@@ -26,6 +26,7 @@
       - ttf-hack
       - ttf-inconsolata
       - ttf-roboto-mono
+      - noto-fonts
       - powerline
       - awesome-terminal-fonts
       - noto-fonts-emoji
