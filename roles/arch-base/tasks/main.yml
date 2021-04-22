@@ -34,11 +34,6 @@
     name: "{{ lookup('env', 'USER') }}"
     shell: /bin/zsh
 
-- name: clone my dotfiles
-  git:
-    repo: 'https://github.com/gammons/dotfiles-local.git'
-    dest: ~/.dotfiles
-
 - name: clone yay
   git:
     repo: 'https://aur.archlinux.org/yay.git'
@@ -66,17 +61,9 @@
 - name: add fzf
   shell: yay -S --noconfirm fzf
 
-- name: Create SSH directory
-  ansible.builtin.file:
-    path: ~/.ssh
-    state: directory
-    mode: '0600'
 
-- name: Get grant public key
-  become: true
-  get_url:
-    owner: grant
-    group: grant
-    url: https://github.com/gammons.keys
-    dest: /home/grant/.ssh/id_rsa.pub
-    mode: 0600
+- name: python stuff
+  shell: yay -S --noconfirm python3 python-pip
+
+- name: ensure pynvim stuff is installed
+  shell: pip3 install --user pynvim

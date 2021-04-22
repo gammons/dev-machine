@@ -3,6 +3,8 @@
   connection: local
   roles:
     - arch-base
+    # include arch-home if bootstrapping a brand new home directory
+    - arch-home
     - arch-dev
     - laptop
     - arch-wm

@@ -8,17 +8,6 @@
       - docker-compose
       - jq
 
-- name: download chruby and ruby-install
-  shell: yay -S --noconfirm chruby ruby-install
-
-- name: install latest ruby
-  become: true
-  shell: ruby-install --system ruby
-
-- name: install bundler
-  become: true
-  shell: gem install bundler
-
 - name: increase number of fs inotify watches
   become: true
   shell: echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf
@@ -31,21 +20,16 @@
 - name: bounce sysctl
   become: true
   shell: sysctl -p
+  ignore_errors: yes
 
 - name: add kubernetes items
-  shell: yay -S --noconfirm kubectl-bin minikube-bin i3-gnome kubectl-bin kubernetes-helm
+  shell: yay -S --noconfirm kubectl-bin minikube-bin kubectl-bin kubernetes-helm
 
 - name: add stripe cli
   shell: yay -S --noconfirm stripe-cli
 
 - name: add asdf vm
   shell: yay -S --noconfirm asdf-vm
-
-- name: python stuff
-  shell: yay -S --noconfirm python3 python-pip
-
-- name: ensure pynvim stuff is installed
-  shell: pip3 install --user pynvim
 
 - name: add yarn
   shell: yay -S --noconfirm yarn

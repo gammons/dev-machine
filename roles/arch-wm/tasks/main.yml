@@ -1,5 +1,5 @@
 ---
-- name: Setup base packages
+- name: Setup base wm packages
   become: true
   pacman:
     name:
@@ -42,9 +42,11 @@
       - gnome-keyring
       - gnome-flashback
       - redshift
+      - picom
+      - networkmanager-openvpn
 
 - name: add gui packages from aur
-  shell: yay -S --noconfirm picom networkmanager-openvpn nmap remmina steam google-chrome i3-gnome inkdrop
+  shell: yay -S --noconfirm i3-gnome inkdrop ttf-roboto
 
 - name: add a browser
   shell: yay -S google-chrome --noconfirm
