@@ -31,5 +31,8 @@
 - name: add asdf vm
   shell: yay -S --noconfirm asdf-vm
 
+- name: add mariadb
+  shell: yay -S --noconfirm mariadb
+
 - name: add yarn
   shell: yay -S --noconfirm yarn
